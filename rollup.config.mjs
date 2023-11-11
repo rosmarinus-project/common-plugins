@@ -3,8 +3,11 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import babel from '@rollup/plugin-babel';
+import fse from 'fs-extra';
 
-const external = [];
+const { dependencies } = fse.readJSONSync('./package.json');
+
+const external = Object.keys(dependencies);
 
 function getConfig(format, banner) {
   return {
