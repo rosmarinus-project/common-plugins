@@ -30,6 +30,7 @@ function getConfig(format, banner) {
       }),
       babel({
         babelHelpers: 'bundled',
+        extensions: ['.js', '.ts', '.jsx', '.tsx'],
       }),
     ],
   };

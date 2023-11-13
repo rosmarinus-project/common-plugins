@@ -16,7 +16,7 @@ export interface Options {
   babel?: false | BabelOptions;
 }
 
-export default function commonPlugin(options?: Options): Plugin {
+export default function commonPlugins(options?: Options): Plugin[] {
   const { tsconfig = './tsconfig.json', babel: babelConfig } = options || {};
   const plugins = [
     commonjs(),
@@ -34,24 +34,11 @@ export default function commonPlugin(options?: Options): Plugin {
       babel({
         babelHelpers: babelConfig?.babelHelpers || 'bundled',
         extensions: ['.js', '.ts', '.jsx', '.tsx'],
-        include: babelConfig?.include,
+        include: babelConfig?.include || ['src/**/*'],
         exclude: babelConfig?.exclude,
-        root: process.cwd(),
       }),
     );
   }
 
-  return {
-    name: '@rosmarinus/common-plugins',
-    options(options) {
-      if (!options.plugins) {
-        // eslint-disable-next-line no-param-reassign
-        options.plugins = [];
-      }
-
-      if (Array.isArray(options.plugins)) {
-        options.plugins?.push(...plugins);
-      }
-    },
-  };
+  return plugins;
 }

@@ -18,12 +18,12 @@ npm i @rosmarinus/common-plugins -D
 
 ```js
 // rollup.config.js
-import commonPlugin from '@rosmarinus/common-plugins';
+import commonPlugins from '@rosmarinus/common-plugins';
 
 export default {
   input: 'src/index.ts',
   plugins: [
-    commonPlugin(),
+    ...commonPlugins(),
   ],
 };
 ```
