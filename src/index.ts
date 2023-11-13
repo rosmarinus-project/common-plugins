@@ -16,7 +16,7 @@ export interface Options {
   babel?: false | BabelOptions;
 }
 
-export default function commonPlugins(options?: Options): Plugin[] {
+export default function commonPlugin(options?: Options): Plugin[] {
   const { tsconfig = './tsconfig.json', babel: babelConfig } = options || {};
   const plugins = [
     commonjs(),
