@@ -36,6 +36,7 @@ export default function commonPlugin(options?: Options): Plugin {
         extensions: ['.js', '.ts', '.jsx', '.tsx'],
         include: babelConfig?.include,
         exclude: babelConfig?.exclude,
+        root: process.cwd(),
       }),
     );
   }
