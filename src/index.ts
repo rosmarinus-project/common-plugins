@@ -8,6 +8,7 @@ import type { Plugin } from 'rollup';
 export interface BabelOptions {
   babelHelpers?: 'bundled' | 'runtime' | 'inline' | 'external';
   include?: ReadonlyArray<string | RegExp> | string | RegExp;
+  exclude?: ReadonlyArray<string | RegExp> | string | RegExp;
 }
 
 export interface Options {
@@ -33,7 +34,8 @@ export default function commonPlugin(options?: Options): Plugin {
       babel({
         babelHelpers: babelConfig?.babelHelpers || 'bundled',
         extensions: ['.js', '.ts', '.jsx', '.tsx'],
-        include: babelConfig?.include ?? ['src/**/*'],
+        include: babelConfig?.include,
+        exclude: babelConfig?.exclude,
       }),
     );
   }
