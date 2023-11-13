@@ -5,9 +5,14 @@ import json from '@rollup/plugin-json';
 import babel from '@rollup/plugin-babel';
 import type { Plugin } from 'rollup';
 
+export interface BabelOptions {
+  babelHelpers?: 'bundled' | 'runtime' | 'inline' | 'external';
+  include?: ReadonlyArray<string | RegExp> | string | RegExp;
+}
+
 export interface Options {
   tsconfig?: string;
-  babel?: false | { babelHelpers?: 'bundled' | 'runtime' | 'inline' | 'external' };
+  babel?: false | BabelOptions;
 }
 
 export default function commonPlugin(options?: Options): Plugin {
@@ -28,7 +33,7 @@ export default function commonPlugin(options?: Options): Plugin {
       babel({
         babelHelpers: babelConfig?.babelHelpers || 'bundled',
         extensions: ['.js', '.ts', '.jsx', '.tsx'],
-        exclude: 'node_modules/**',
+        include: babelConfig?.include ?? ['src/**/*'],
       }),
     );
   }

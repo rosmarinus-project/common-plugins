@@ -9,14 +9,6 @@
     "registry": "https://registry.npmjs.org/"
   },
   "sideEffects": false,
-  "exports": {
-    ".": {
-      "types": "./dist/es/index.d.ts",
-      "require": "./dist/cjs/index.js",
-      "import": "./dist/es/index.js"
-    },
-    "./*": "./*"
-  },
   "scripts": {
     "dev": "rollup -c rollup.config.mjs -w",
     "build": "rimraf dist && rollup -c rollup.config.mjs",
