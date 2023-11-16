@@ -11,13 +11,18 @@ export interface BabelOptions {
   exclude?: ReadonlyArray<string | RegExp> | string | RegExp;
 }
 
-export interface Options {
+export interface TsOptions {
   tsconfig?: string;
+  outDir?: string;
+}
+
+export interface Options {
+  ts?: TsOptions;
   babel?: false | BabelOptions;
 }
 
 export default function commonPlugin(options?: Options): Plugin[] {
-  const { tsconfig = './tsconfig.json', babel: babelConfig } = options || {};
+  const { ts, babel: babelConfig } = options || {};
   const plugins = [
     commonjs(),
     resolve({
@@ -25,7 +30,8 @@ export default function commonPlugin(options?: Options): Plugin[] {
     }),
     json(),
     typescript({
-      tsconfig,
+      tsconfig: ts?.tsconfig || './tsconfig.json',
+      outDir: ts?.outDir,
     }),
   ];
 
