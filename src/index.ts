@@ -1,15 +1,9 @@
-import typescript from '@rollup/plugin-typescript';
+import typescript, { RollupTypescriptOptions } from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
-import babel from '@rollup/plugin-babel';
+import babel, { RollupBabelInputPluginOptions } from '@rollup/plugin-babel';
 import type { Plugin } from 'rollup';
-
-export interface BabelOptions {
-  babelHelpers?: 'bundled' | 'runtime' | 'inline' | 'external';
-  include?: ReadonlyArray<string | RegExp> | string | RegExp;
-  exclude?: ReadonlyArray<string | RegExp> | string | RegExp;
-}
 
 export interface TsOptions {
   tsconfig?: string;
@@ -17,8 +11,8 @@ export interface TsOptions {
 }
 
 export interface Options {
-  ts?: TsOptions;
-  babel?: false | BabelOptions;
+  ts?: RollupTypescriptOptions;
+  babel?: false | RollupBabelInputPluginOptions;
 }
 
 export default function commonPlugin(options?: Options): Plugin[] {
@@ -30,18 +24,18 @@ export default function commonPlugin(options?: Options): Plugin[] {
     }),
     json(),
     typescript({
+      ...ts,
       tsconfig: ts?.tsconfig || './tsconfig.json',
-      outDir: ts?.outDir,
     }),
   ];
 
   if (babelConfig !== false) {
     plugins.push(
       babel({
+        ...babelConfig,
         babelHelpers: babelConfig?.babelHelpers || 'bundled',
-        extensions: ['.js', '.ts', '.jsx', '.tsx'],
+        extensions: babelConfig?.extensions ?? ['.js', '.ts', '.jsx', '.tsx'],
         include: babelConfig?.include || ['src/**/*'],
-        exclude: babelConfig?.exclude,
       }),
     );
   }
