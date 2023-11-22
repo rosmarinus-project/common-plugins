@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import strip, { RollupStripOptions } from '@rollup/plugin-strip';
 import babel, { RollupBabelInputPluginOptions } from '@rollup/plugin-babel';
+import replace from '@rollup/plugin-replace';
 import type { FilterPattern } from '@rollup/pluginutils';
 import type { Plugin } from 'rollup';
 
@@ -23,10 +24,11 @@ export interface Options {
   babel?: false | RollupBabelInputPluginOptions;
   strip?: boolean | StripOptions;
   src?: FilterPattern;
+  replace?: Record<string, string>;
 }
 
 export default function commonPlugin(options?: Options): Plugin[] {
-  const { src = ['src/**/*'], ts, babel: babelConfig, strip: stripConfig } = options || {};
+  const { src = ['src/**/*'], ts, babel: babelConfig, strip: stripConfig, replace: replaceConfig } = options || {};
   const plugins = [
     commonjs(),
     resolve({
@@ -38,6 +40,15 @@ export default function commonPlugin(options?: Options): Plugin[] {
       tsconfig: ts?.tsconfig || './tsconfig.json',
     }),
   ];
+
+  if (replaceConfig) {
+    plugins.unshift(
+      replace({
+        preventAssignment: true,
+        values: replaceConfig,
+      }),
+    );
+  }
 
   if (babelConfig !== false) {
     plugins.push(
