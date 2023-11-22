@@ -21,7 +21,7 @@ export interface StripOptions extends RollupStripOptions {
 export interface Options {
   ts?: RollupTypescriptOptions;
   babel?: false | RollupBabelInputPluginOptions;
-  strip?: true | StripOptions;
+  strip?: boolean | StripOptions;
   src?: FilterPattern;
 }
 
