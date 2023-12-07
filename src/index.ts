@@ -1,3 +1,4 @@
+import { resolve as resolvePath } from 'path';
 import typescript, { RollupTypescriptOptions } from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
@@ -5,6 +6,7 @@ import json from '@rollup/plugin-json';
 import strip, { RollupStripOptions } from '@rollup/plugin-strip';
 import babel, { RollupBabelInputPluginOptions } from '@rollup/plugin-babel';
 import replace from '@rollup/plugin-replace';
+import alias from '@rollup/plugin-alias';
 import type { FilterPattern } from '@rollup/pluginutils';
 import type { Plugin } from 'rollup';
 
@@ -25,12 +27,22 @@ export interface Options {
   strip?: boolean | StripOptions;
   src?: FilterPattern;
   replace?: Record<string, string>;
+  alias?: false | Record<string, string>;
 }
 
 export default function commonPlugin(options?: Options): Plugin[] {
   const { src = ['src/**/*'], ts, babel: babelConfig, strip: stripConfig, replace: replaceConfig } = options || {};
+
+  const entries = options?.alias === false ? [] : [{ find: '@src', replacement: resolvePath('src') }];
+
+  Object.entries(options?.alias || {}).forEach(([find, replacement]) => {
+    entries.push({ find, replacement });
+  });
   const plugins = [
     commonjs(),
+    alias({
+      entries,
+    }),
     resolve({
       preferBuiltins: true,
     }),

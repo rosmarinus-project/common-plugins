@@ -34,6 +34,7 @@
     "rollup": "^4.3.0"
   },
   "dependencies": {
+    "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.0.1",
@@ -41,7 +42,8 @@
     "@rollup/plugin-replace": "^5.0.5",
     "@rollup/plugin-strip": "^3.0.4",
     "@rollup/plugin-typescript": "^11.1.5",
-    "@rollup/pluginutils": "^5.0.5"
+    "@rollup/pluginutils": "^5.0.5",
+    "tslib": "^2.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",
