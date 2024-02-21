@@ -1,3 +1,10 @@
+## <small>0.4.2 (2024-02-21)</small>
+
+* fix: doc ([34728e8](https://github.com/rosmarinus-project/common-plugins/commit/34728e8))
+* fix: pack ([5ea7580](https://github.com/rosmarinus-project/common-plugins/commit/5ea7580))
+
+
+
 ## <small>0.4.1 (2024-02-21)</small>
 
 * refactor: update ci ([2a6e548](https://github.com/rosmarinus-project/common-plugins/commit/2a6e548))
