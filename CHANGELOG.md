@@ -1,3 +1,9 @@
+## <small>0.4.1 (2024-02-21)</small>
+
+* refactor: update ci ([2a6e548](https://github.com/rosmarinus-project/common-plugins/commit/2a6e548))
+
+
+
 ## 0.4.0 (2024-02-21)
 
 * feat: update babel and npm ([cecea9e](https://github.com/rosmarinus-project/common-plugins/commit/cecea9e))
