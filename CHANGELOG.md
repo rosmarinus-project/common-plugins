@@ -1,3 +1,9 @@
+## <small>0.4.7 (2024-02-21)</small>
+
+* fix: types ([84124e8](https://github.com/rosmarinus-project/common-plugins/commit/84124e8))
+
+
+
 ## <small>0.4.6 (2024-02-21)</small>
 
 * fix: exports ([cc571fd](https://github.com/rosmarinus-project/common-plugins/commit/cc571fd))
