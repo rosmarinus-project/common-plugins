@@ -9,11 +9,16 @@ const { dependencies } = fse.readJSONSync('./package.json');
 
 const external = Object.keys(dependencies);
 
+const extMap = {
+  cjs: 'cjs',
+  es: 'mjs',
+};
+
 function getConfig(format, banner) {
   return {
     input: 'src/index.ts',
     output: {
-      file: `dist/${format}/index.js`,
+      file: `dist/${format}/index.${extMap[format] || 'js'}`,
       format,
       banner,
       sourcemap: true,

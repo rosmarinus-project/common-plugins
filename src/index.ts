@@ -8,7 +8,7 @@ import babel, { RollupBabelInputPluginOptions } from '@rollup/plugin-babel';
 import replace from '@rollup/plugin-replace';
 import alias from '@rollup/plugin-alias';
 import type { FilterPattern } from '@rollup/pluginutils';
-import type { Plugin } from 'rollup';
+import type { Plugin, ModuleFormat } from 'rollup';
 
 export interface TsOptions {
   tsconfig?: string;
@@ -49,6 +49,36 @@ function getDefaultBabelConfig() {
   const plugins = config?.plugins || [];
 
   return { presets, plugins };
+}
+
+export function getExt(format: ModuleFormat) {
+  if (format === 'cjs' || format === 'commonjs') {
+    return 'cjs';
+  }
+
+  if (format === 'esm' || format === 'es') {
+    return 'mjs';
+  }
+
+  return 'js';
+}
+
+export function defaultConfigGenerator(format: ModuleFormat, banner?: string, external?: string[]) {
+  return {
+    input: 'src/index.ts',
+    output: {
+      file: `dist/${format}/index.${getExt(format)}`,
+      format,
+      banner,
+      sourcemap: true,
+    },
+    external,
+    plugins: [commonPlugin()],
+  };
+}
+
+export function getDefaultRollupConfig() {
+  return [defaultConfigGenerator('cjs'), defaultConfigGenerator('es')];
 }
 
 export default function commonPlugin(options?: Options): Plugin[] {
