@@ -1,6 +1,6 @@
 {
   "name": "@rosmarinus/common-plugins",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "some common plugins for rosmarinus",
   "main": "dist/cjs/index.cjs",
   "module": "dist/es/index.mjs",

@@ -1,3 +1,9 @@
+## <small>0.4.3 (2024-02-21)</small>
+
+* fix: default export ([b075597](https://github.com/rosmarinus-project/common-plugins/commit/b075597))
+
+
+
 ## <small>0.4.2 (2024-02-21)</small>
 
 * fix: doc ([34728e8](https://github.com/rosmarinus-project/common-plugins/commit/34728e8))
