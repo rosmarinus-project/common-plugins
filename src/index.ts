@@ -30,6 +30,27 @@ export interface Options {
   alias?: false | Record<string, string>;
 }
 
+function loadJs(filePath: string) {
+  try {
+    return require(filePath);
+  } catch (e) {
+    return undefined;
+  }
+}
+
+function getDefaultBabelConfig() {
+  const config =
+    loadJs(resolvePath('./babel.config.js')) ||
+    loadJs(resolvePath('./babel.config.cjs')) ||
+    loadJs(resolvePath('./.babelrc.js')) ||
+    loadJs(resolvePath('./.babelrc'));
+
+  const presets = config?.presets || [];
+  const plugins = config?.plugins || [];
+
+  return { presets, plugins };
+}
+
 export default function commonPlugin(options?: Options): Plugin[] {
   const { src = ['src/**/*'], ts, babel: babelConfig, strip: stripConfig, replace: replaceConfig } = options || {};
 
@@ -65,6 +86,7 @@ export default function commonPlugin(options?: Options): Plugin[] {
   if (babelConfig !== false) {
     plugins.push(
       babel({
+        ...getDefaultBabelConfig(),
         ...babelConfig,
         babelHelpers: babelConfig?.babelHelpers || 'bundled',
         extensions: babelConfig?.extensions ?? ['.js', '.ts', '.jsx', '.tsx'],

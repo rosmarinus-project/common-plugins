@@ -1,9 +1,9 @@
-describe('样例', () => {
+describe('example', () => {
   beforeEach(() => {});
 
   afterEach(() => {});
 
-  test('样例', () => {
+  test('example', () => {
     console.log('hello test');
   });
 });
