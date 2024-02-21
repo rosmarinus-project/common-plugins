@@ -63,7 +63,7 @@ export function getExt(format: ModuleFormat) {
   return 'js';
 }
 
-export function defaultConfigGenerator(format: ModuleFormat, banner?: string, external?: string[]) {
+export function defaultConfigGenerator(format: ModuleFormat, external?: string[], banner?: string) {
   return {
     input: 'src/index.ts',
     output: {
