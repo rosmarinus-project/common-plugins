@@ -13,7 +13,7 @@
     ".": {
       "import": "./dist/es/index.js",
       "require": "./dist/cjs/index.js",
-      "types": "./dist/types/index.d.ts"
+      "types": "./dist/es/index.d.ts"
     }
   },
   "sideEffects": false,
