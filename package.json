@@ -9,6 +9,13 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
   "sideEffects": false,
   "scripts": {
     "dev": "rollup -c rollup.config.js -w",
