@@ -1,3 +1,9 @@
+## <small>0.4.5 (2024-02-21)</small>
+
+* fix: type ([d358c25](https://github.com/rosmarinus-project/common-plugins/commit/d358c25))
+
+
+
 ## <small>0.4.4 (2024-02-21)</small>
 
 * fix: rename param ([740c934](https://github.com/rosmarinus-project/common-plugins/commit/740c934))
