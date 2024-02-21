@@ -51,23 +51,11 @@ function getDefaultBabelConfig() {
   return { presets, plugins };
 }
 
-export function getExt(format: ModuleFormat) {
-  if (format === 'cjs' || format === 'commonjs') {
-    return 'cjs';
-  }
-
-  if (format === 'esm' || format === 'es') {
-    return 'mjs';
-  }
-
-  return 'js';
-}
-
 export function defaultConfigGenerator(format: ModuleFormat, external?: string[], banner?: string) {
   return {
     input: 'src/index.ts',
     output: {
-      file: `dist/${format}/index.${getExt(format)}`,
+      file: `dist/${format}/index.js`,
       format,
       banner,
       sourcemap: true,

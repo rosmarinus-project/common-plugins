@@ -2,8 +2,8 @@
   "name": "@rosmarinus/common-plugins",
   "version": "0.4.4",
   "description": "some common plugins for rosmarinus",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/es/index.mjs",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
   "type": "module",
   "publishConfig": {
     "access": "public",
