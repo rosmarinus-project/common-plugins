@@ -73,7 +73,7 @@ export function defaultConfigGenerator(format: ModuleFormat, banner?: string, ex
       sourcemap: true,
     },
     external,
-    plugins: [commonPlugin()],
+    plugins: [common()],
   };
 }
 
@@ -81,7 +81,7 @@ export function getDefaultRollupConfig() {
   return [defaultConfigGenerator('cjs'), defaultConfigGenerator('es')];
 }
 
-export default function commonPlugin(options?: Options): Plugin[] {
+export function common(options?: Options): Plugin[] {
   const { src = ['src/**/*'], ts, babel: babelConfig, strip: stripConfig, replace: replaceConfig } = options || {};
 
   const entries = options?.alias === false ? [] : [{ find: '@src', replacement: resolvePath('src') }];
@@ -154,3 +154,5 @@ export default function commonPlugin(options?: Options): Plugin[] {
 
   return plugins;
 }
+
+export default common;
