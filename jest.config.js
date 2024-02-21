@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   rootDir: './',
   bail: true,
   testMatch: ['<rootDir>/test/**/*.{spec,test}.{ts,tsx}'],

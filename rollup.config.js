@@ -29,6 +29,7 @@ function getConfig(format, banner) {
         tsconfig: './tsconfig.json',
       }),
       babel({
+        presets: ['@babel/preset-env', '@babel/preset-typescript'],
         babelHelpers: 'bundled',
         extensions: ['.js', '.ts', '.jsx', '.tsx'],
       }),
