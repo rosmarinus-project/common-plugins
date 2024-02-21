@@ -1,3 +1,9 @@
+## <small>0.4.4 (2024-02-21)</small>
+
+* fix: rename param ([740c934](https://github.com/rosmarinus-project/common-plugins/commit/740c934))
+
+
+
 ## <small>0.4.3 (2024-02-21)</small>
 
 * fix: default export ([b075597](https://github.com/rosmarinus-project/common-plugins/commit/b075597))
